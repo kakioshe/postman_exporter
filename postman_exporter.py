@@ -34,7 +34,7 @@ def create_markdown(data, name):
     request = data['request']
     response = data['response']
 
-    with open('{}/{}.txt'.format(path, filename), 'w') as f:
+    with open('{}/{}.md'.format(path, filename), 'w') as f:
         f.write('Endpoint for {}\n'.format(name))
         f.write('\n')
 

@@ -58,10 +58,14 @@ def create_markdown(data, name):
         f.write('# Body\n')
         f.write('```\n')
         f.write('{\n')
-        if 'body' in request.keys() and 'urlencoded' in request['body'].keys():
-            for body in request['body']['urlencoded']:
-                f.write('   {}: {} # {}\n'.format(
-                    body['key'], body['value'], body['type']))
+        if 'body' in request.keys():
+            for body_data in request['body'][request['body']['mode']]:
+                if body_data['type'] == 'text':
+                    f.write('   {}: {} # {}\n'.format(
+                        body_data['key'], body_data['value'], body_data['type']))
+                elif body_data['type'] == 'file':
+                    f.write('   {}: {} # {}\n'.format(
+                        body_data['key'], body_data['src'], body_data['type']))
         f.write('}\n')
         f.write('```\n')
         f.write('\n')

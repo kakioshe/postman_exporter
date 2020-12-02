@@ -38,7 +38,7 @@ def create_markdown(data, name):
         f.write('Endpoint for {}\n'.format(name))
         f.write('\n')
 
-        f.write('_url: {}_\n'.format(request['url']['raw']))
+        f.write('url: _{}_\n'.format(request['url']['raw']))
         f.write('Method: {}\n'.format(request['method']))
         f.write('\n')
 

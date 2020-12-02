@@ -2,7 +2,7 @@
 
 ## Description
 
-Simple script to export POSTMAN JSON to markdown format in the form of txt for each requests
+Simple script to export POSTMAN JSON to markdown format in the form of md file for each requests
 
 ## How to use
 

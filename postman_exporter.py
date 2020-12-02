@@ -48,7 +48,7 @@ def create_markdown(data, name):
         f.write('{\n')
         if 'header' in request.keys():
             for header in request['header']:
-                f.write('{}: {} # {}\n'.format(
+                f.write('    {}: {} # {}\n'.format(
                     header['key'], header['value'], header['type']))
         f.write('}\n')
         f.write('```\n')
@@ -60,8 +60,8 @@ def create_markdown(data, name):
         f.write('{\n')
         if 'body' in request.keys() and 'urlencoded' in request['body'].keys():
             for body in request['body']['urlencoded']:
-                f.write('{}: {} # {}\n'.format(
-                    header['key'], header['value'], header['type']))
+                f.write('   {}: {} # {}\n'.format(
+                    body['key'], body['value'], body['type']))
         f.write('}\n')
         f.write('```\n')
         f.write('\n')
@@ -77,7 +77,6 @@ def create_markdown(data, name):
                 f.write('{}\n'.format(item['body']))
                 f.write('```\n')
                 f.write('\n')
-
         f.close()
 
 

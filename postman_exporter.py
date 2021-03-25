@@ -59,13 +59,22 @@ def create_markdown(data, name):
         f.write('```\n')
         f.write('{\n')
         if 'body' in request.keys():
-            for body_data in request['body'][request['body']['mode']]:
-                if body_data['type'] == 'text':
-                    f.write('   {}: {} # {}\n'.format(
-                        body_data['key'], body_data['value'], body_data['type']))
-                elif body_data['type'] == 'file':
-                    f.write('   {}: {} # {}\n'.format(
-                        body_data['key'], body_data['src'], body_data['type']))
+            if request['body']['mode'] == "raw":
+                body_data = request['body'][request['body']['mode']]
+                if body_data:
+                    body_data = json.loads(body_data)
+                    for key in body_data:
+                        f.write('   {}: {}\n'.format(
+                            key, body_data[key]))
+            else:
+                for body_data in request['body'][request['body']['mode']]:
+                    if body_data['type'] == 'text':
+                        f.write('   {}: {} # {}\n'.format(
+                            body_data['key'], body_data['value'], body_data['type']))
+                    elif body_data['type'] == 'file':
+                        f.write('   {}: {} # {}\n'.format(
+                            body_data['key'], body_data['src'], body_data['type']))
+
         f.write('}\n')
         f.write('```\n')
         f.write('\n')
